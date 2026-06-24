@@ -30,6 +30,9 @@ export type AdminTab =
   | 'overview'
   | 'blog'
   | 'media'
+  | 'audio'
+  | 'self-recorded'
+  | 'public-media'
   | 'quotes'
   | 'events'
   | 'gallery'
@@ -63,6 +66,9 @@ const NAV: { section: string; items: { tab: AdminTab; label: string; icon: typeo
     items: [
       { tab: 'blog', label: 'Blog Posts', icon: FileText },
       { tab: 'media', label: 'Music Videos', icon: Film },
+      { tab: 'audio', label: 'Audio Library', icon: Music },
+      { tab: 'self-recorded', label: 'Self-Recorded', icon: Video },
+      { tab: 'public-media', label: 'Public Media', icon: Camera },
       { tab: 'creations', label: 'Creations', icon: Sparkles },
       { tab: 'quotes', label: 'Quotes', icon: QuoteIcon },
       { tab: 'events', label: 'Events', icon: Calendar },

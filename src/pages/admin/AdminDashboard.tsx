@@ -26,6 +26,9 @@ export function AdminDashboard() {
         {tab === 'overview' && <Overview onTab={setTab} />}
         {tab === 'blog' && <BlogManager />}
         {tab === 'media' && <MediaManager category="music_videos" title="Music Videos" subtitle="Official music videos — embedded links or uploaded files." />}
+        {tab === 'audio' && <MediaManager category="audio_library" title="Audio Library" subtitle="Tracks, soundscapes, and spoken word." />}
+        {tab === 'self-recorded' && <MediaManager category="self_recorded" title="Self-Recorded Videos" subtitle="Personal, raw, and direct — recorded by Love Parekh." />}
+        {tab === 'public-media' && <MediaManager category="public_media" title="Public Media" subtitle="Interviews, features, and public appearances." />}
         {tab === 'quotes' && <QuotesManager />}
         {tab === 'events' && <EventsManager />}
         {tab === 'gallery' && <GalleryManager />}
