@@ -98,17 +98,22 @@ Deno.serve(async (req: Request) => {
       // Stub: integrate Resend/SendGrid here when key is set
       const resendKey = Deno.env.get("RESEND_API_KEY");
       if (resendKey && subs && subs.length > 0) {
+        const fromAddress = Deno.env.get("RESEND_FROM") || "Love's Aura <onboarding@resend.dev>";
         for (const sub of subs) {
-          await fetch("https://api.resend.com/emails", {
+          const r = await fetch("https://api.resend.com/emails", {
             method: "POST",
             headers: { "Content-Type": "application/json", Authorization: `Bearer ${resendKey}` },
             body: JSON.stringify({
-              from: "Love's Aura <letters@lovesaura.app>",
+              from: fromAddress,
               to: [sub.email],
               subject: letter.subject,
-              html: letter.body.replace(/\n/g, "<br>"),
+              html: `<div style="font-family:Georgia,serif;max-width:600px;margin:auto;padding:32px;background:#0a0a12;color:#e2e8f0;">${letter.body.replace(/\n/g, "<br>")}<br><br><hr style="border-color:#ffffff15"><p style="font-size:12px;color:#64748b">You're receiving this because you subscribed at Love's Aura. <a href="#" style="color:#3df0ff">Unsubscribe</a></p></div>`,
             }),
           });
+          if (!r.ok) {
+            const errBody = await r.text();
+            console.error("Resend error:", r.status, errBody);
+          }
         }
       }
 
