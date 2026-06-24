@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-ink-950 text-slate-100 font-sans antialiased;
+    background-image:
+      radial-gradient(circle at 12% 18%, rgba(201, 61, 240, 0.10), transparent 42%),
+      radial-gradient(circle at 88% 8%, rgba(61, 240, 255, 0.08), transparent 46%),
+      radial-gradient(circle at 50% 100%, rgba(139, 92, 255, 0.10), transparent 50%);
+    background-attachment: fixed;
+  }
+  ::selection {
+    @apply bg-aura-400/40 text-white;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display;
+    letter-spacing: -0.01em;
+  }
+  /* Custom scrollbar */
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: #0c0820; }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #c93df0, #8b5cff);
+    border-radius: 8px;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: #e164ff; }
+}
+
+@layer components {
+  .aura-gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(120deg, #ee9bff 0%, #3df0ff 50%, #8b5cff 100%);
+  }
+  .aura-border {
+    @apply border border-white/10;
+  }
+  .glass-card {
+    @apply backdrop-blur-xl bg-white/[0.03] border border-white/10 rounded-2xl;
+  }
+  .glass-panel {
+    @apply backdrop-blur-2xl bg-ink-900/60 border border-white/[0.07] rounded-3xl;
+  }
+  .aura-btn {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full font-medium text-sm transition-all duration-300;
+  }
+  .aura-btn-primary {
+    @apply aura-btn bg-gradient-to-r from-aura-500 to-neon-violet text-white shadow-aura-glow hover:shadow-neon-pink hover:-translate-y-0.5;
+  }
+  .aura-btn-ghost {
+    @apply aura-btn border border-white/15 bg-white/[0.02] text-slate-200 hover:bg-white/[0.06] hover:border-aura-400/50;
+  }
+  .aura-input {
+    @apply w-full px-4 py-2.5 rounded-xl bg-ink-850/80 border border-white/10 text-slate-100 placeholder:text-slate-500
+           focus:outline-none focus:ring-2 focus:ring-aura-400/50 focus:border-aura-400/60 transition;
+  }
+  .aura-label {
+    @apply block text-xs font-semibold uppercase tracking-widest text-aura-200/80 mb-2;
+  }
+  .section-pad {
+    @apply py-20 md:py-28 px-5 md:px-10;
+  }
+  .container-x {
+    @apply max-w-7xl mx-auto;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs text-slate-300;
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .prose-aura {
+    @apply text-slate-300 leading-relaxed;
+  }
+  .prose-aura h2 { @apply font-display text-2xl text-white mt-8 mb-3; }
+  .prose-aura h3 { @apply font-display text-xl text-white mt-6 mb-2; }
+  .prose-aura p { @apply mb-4; }
+  .prose-aura a { @apply text-aura-300 underline underline-offset-2; }
+  .prose-aura ul { @apply list-disc pl-6 mb-4 space-y-1; }
+  .prose-aura ol { @apply list-decimal pl-6 mb-4 space-y-1; }
+  .prose-aura blockquote { @apply border-l-2 border-aura-400/60 pl-4 italic text-slate-200 my-6; }
+}
